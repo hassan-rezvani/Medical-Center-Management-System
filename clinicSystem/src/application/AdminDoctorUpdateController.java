@@ -277,8 +277,14 @@ public class AdminDoctorUpdateController implements Initializable {
 			phoneNumberField.setDisable(false);
 			phoneNumberField.setEditable(true);
 			
+			userNameField.setDisable(false);
+			userNameField.setEditable(true);
+			
+			passwordField.setDisable(false);
+			passwordField.setEditable(true);
+			
 			genderChoiceBox.setDisable(false);
-			departmentChoiceBox.setDisable(false);
+			departmentChoiceBox.setDisable(true);
 			updateButton.setDisable(false);
 		} else {
 			firstNameField.setDisable(true);
@@ -302,7 +308,13 @@ public class AdminDoctorUpdateController implements Initializable {
 			phoneNumberField.setDisable(true);
 			phoneNumberField.setEditable(false);
 			
-			genderChoiceBox.setDisable(false);
+			userNameField.setDisable(true);
+			userNameField.setEditable(false);
+			
+			passwordField.setDisable(true);
+			passwordField.setEditable(false);
+			
+			genderChoiceBox.setDisable(true);
 			departmentChoiceBox.setDisable(true);
 			updateButton.setDisable(true);
 			
@@ -324,7 +336,7 @@ public class AdminDoctorUpdateController implements Initializable {
 	}
 
 	public void adminPortalBackIconClicked() {
-		Stage doctorPortalStage = (Stage) addButton.getScene().getWindow();
+		Stage doctorPortalStage = (Stage) updateButton.getScene().getWindow();
 
 		try {
 			Parent root = FXMLLoader.load(getClass().getResource("AdminDoctorViewUI.fxml"));
