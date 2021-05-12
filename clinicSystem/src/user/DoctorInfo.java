@@ -2,8 +2,18 @@ package user;
 
 
 public class DoctorInfo {
-	private String doctorID, firstName, lastName, dateOfBirth, address, phoneNumber, gender, department, userName, password;
-
+	
+	private static DoctorInfo INSTANCE;
+	private String doctorID = null;
+	private String firstName = null;
+	private String lastName = null;
+	private String dateOfBirth = null;
+	private String address = null;
+	private String phoneNumber = null;
+	private String gender = null;
+	private String department = null;
+	private String userName = null;
+	private String password = null;
 	/**
 	 * 
 	 * @param doctorID
@@ -17,6 +27,18 @@ public class DoctorInfo {
 	 * @param userName
 	 * @param password
 	 */
+	
+	public synchronized static DoctorInfo getInstance() {
+		if (INSTANCE == null) {
+			INSTANCE = new DoctorInfo();
+		}
+
+		return INSTANCE;
+	}
+	
+	public DoctorInfo() {
+	}
+	
 	public DoctorInfo(String doctorID, String firstName, String lastName, String dateOfBirth, String address,
 			String phoneNumber, String gender, String department, String userName, String password) {
 		super();

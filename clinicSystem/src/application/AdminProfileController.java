@@ -31,10 +31,14 @@ public class AdminProfileController implements Initializable {
 
 	// AdminUser Singleton Object
 	AdminUser sysAdmin;
+	
+	TextFieldProperty tfProperty = new TextFieldProperty();
 
 	@Override
 	public void initialize(URL ursl, ResourceBundle rb) {
 		// TO-DO (Welcome Message, Show Date, etc ...)
+		tfProperty.setMaxLimit(adminIDField, 6);
+		
 		AdminUser sysAdmin = AdminUser.getInstance();
 		adminIDField.setText(sysAdmin.getId());
 		adminUsernameField.setText(sysAdmin.getUserName());

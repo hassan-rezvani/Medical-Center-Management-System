@@ -106,7 +106,7 @@ public class TextFieldProperty {
 	}
 	
 	public void duplicateDoctorIDError(final TextField tf, Label messageLabel) {
-		messageLabel.setText("ID D-" + tf.getText() +" is in use");
+		messageLabel.setText("ID D" + tf.getText() +" is in use");
 		removeGreen(tf);
 		setRed(tf);
 	}

@@ -9,9 +9,11 @@ import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -46,6 +48,9 @@ public class AdminDoctorViewController implements Initializable{
     private TableColumn<DoctorInfo, String> doctorIDCol;
     
     ObservableList<DoctorInfo> doctorsList;
+    
+    //Doctor Singelton Object
+    DoctorInfo doctorInfo;
 	
 
 	@Override
@@ -111,11 +116,43 @@ public class AdminDoctorViewController implements Initializable{
 		doctorsTable.setItems(doctorsList);
 	}	
 	
-	public void addDoctorOnAction () {
+	public void adminPortalBackIconClicked() {
+		Stage adminPortalStage = (Stage) addDoctorButton.getScene().getWindow();
+
+		try {
+			Parent root = FXMLLoader.load(getClass().getResource("AdminPortalUI.fxml"));
+			Scene scene = new Scene(root);
+			adminPortalStage.setScene(scene);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void addDoctorOnAction () {		
 		Stage mainStage = (Stage) addDoctorButton.getScene().getWindow();
 
 		try {
 			Parent root = FXMLLoader.load(getClass().getResource("AdminDoctorRegistrationUI.fxml"));
+			Scene scene = new Scene(root);
+			mainStage.setScene(scene);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	public void openDoctorButtonOnAction (ActionEvent event) {		
+		Stage mainStage = (Stage) addDoctorButton.getScene().getWindow();
+
+		try {
+			doctorInfo = DoctorInfo.getInstance();
+			if (doctorsTable.getSelectionModel().getSelectedItem() == null) {
+				
+				return;
+			}
+			doctorInfo.setDoctorID(doctorsTable.getSelectionModel().getSelectedItem().getDoctorID());
+			
+			Parent root = FXMLLoader.load(getClass().getResource("AdminDoctorUpdateUI.fxml"));			
 			Scene scene = new Scene(root);
 			mainStage.setScene(scene);
 		} catch (Exception e) {

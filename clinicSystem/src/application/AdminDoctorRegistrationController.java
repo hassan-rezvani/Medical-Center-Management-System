@@ -7,13 +7,17 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 import util.DBUtil;
 
 public class AdminDoctorRegistrationController implements Initializable {
@@ -96,7 +100,7 @@ public class AdminDoctorRegistrationController implements Initializable {
 		departmentChoiceBox.getItems().addAll("A", "B", "C");
 		genderChoiceBox.getItems().addAll("Female", "Male", "Other", "Not Defined");
 
-		tfProperty.setMaxLimit(doctorIDField, 5);
+		tfProperty.setMaxLimit(doctorIDField, 6);
 		tfProperty.setMaxLimit(dayField, 2);
 		tfProperty.setMaxLimit(monthField, 2);
 		tfProperty.setMaxLimit(yearField, 4);
@@ -224,6 +228,30 @@ public class AdminDoctorRegistrationController implements Initializable {
 				System.out.println(e.toString());
 				System.exit(0);
 			}
+			
+			
+			
+			Stage adminPortalStage = (Stage) addButton.getScene().getWindow();
+
+			try {
+				Parent root = FXMLLoader.load(getClass().getResource("AdminDoctorViewUI.fxml"));
+				Scene scene = new Scene(root);
+				adminPortalStage.setScene(scene);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	public void adminPortalBackIconClicked() {
+		Stage adminPortalStage = (Stage) addButton.getScene().getWindow();
+
+		try {
+			Parent root = FXMLLoader.load(getClass().getResource("AdminDoctorViewUI.fxml"));
+			Scene scene = new Scene(root);
+			adminPortalStage.setScene(scene);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 

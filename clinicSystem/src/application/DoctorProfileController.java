@@ -49,14 +49,13 @@ public class DoctorProfileController implements Initializable{
 	private Button updateButton;
 	
 	
-
 	// DoctorUser Singleton Object
 	DoctorUser sysDoctor;
-
 
 	@Override
 	public void initialize(URL ursl, ResourceBundle rb) {
 		// TO-DO (Welcome Message, Show Date, etc ...)
+		
 		DoctorUser sysDoctor = DoctorUser.getInstance();
 		doctorIDField.setText(sysDoctor.getId());
 		doctorUsernameField.setText(sysDoctor.getUserName());

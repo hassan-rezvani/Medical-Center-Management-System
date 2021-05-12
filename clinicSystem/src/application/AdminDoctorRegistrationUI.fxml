@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
@@ -42,6 +43,11 @@
             <Label fx:id="passwordMessageLabel" layoutX="417.0" layoutY="288.0" prefHeight="17.0" prefWidth="147.0" text="Label" />
             <Label fx:id="addressMessageLabel" layoutX="195.0" layoutY="379.0" prefHeight="17.0" prefWidth="315.0" text="Label" />
             <TextArea fx:id="addressTextArea" layoutX="193.0" layoutY="325.0" prefHeight="54.0" prefWidth="374.0" promptText="Address" />
+            <ImageView fx:id="adminPortalBackIcon" fitHeight="50.0" fitWidth="59.0" layoutX="25.0" layoutY="20.0" onMouseClicked="#adminPortalBackIconClicked" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../resource/red_back_icon.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
    </center>
