@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.DoctorPortalController">
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="profileButton" layoutX="87.0" layoutY="129.0" mnemonicParsing="false" onAction="#profileButtonAction" text="Your Profile" />
+            <Button fx:id="calenderButton" layoutX="87.0" layoutY="213.0" mnemonicParsing="false" onAction="#calenderButtonAction" prefHeight="25.0" prefWidth="81.0" text="Calender" />
+            <ImageView fx:id="doctorPortalBackIcon" fitHeight="57.0" fitWidth="65.0" layoutX="14.0" layoutY="14.0" onMouseClicked="#doctorPortalBackIconMouseClicked" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../resource/red_back_icon.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="welcomeMessage" layoutX="222.0" layoutY="31.0" prefHeight="29.0" prefWidth="163.0">
+            <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

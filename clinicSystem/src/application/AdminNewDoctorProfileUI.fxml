@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="40.0" layoutY="199.0" text="Doctor ID:" />
+            <TextField editable="false" layoutX="451.0" layoutY="281.0" prefHeight="25.0" prefWidth="109.0" stylesheets="@application.css" />
+            <Label layoutX="352.0" layoutY="285.0" text="First Name:" />
+            <Label layoutX="352.0" layoutY="251.0" text="Last Name:" />
+            <TextField editable="false" layoutX="451.0" layoutY="247.0" prefHeight="25.0" prefWidth="109.0" stylesheets="@application.css" />
+            <TextField editable="false" layoutX="451.0" layoutY="214.0" prefHeight="25.0" prefWidth="109.0" stylesheets="@application.css" />
+            <Label layoutX="352.0" layoutY="218.0" text="Date of Birth:" />
+            <TextField editable="false" layoutX="139.0" layoutY="195.0" prefHeight="25.0" prefWidth="109.0" stylesheets="@application.css" />
+            <Text layoutX="253.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Registration Form" />
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

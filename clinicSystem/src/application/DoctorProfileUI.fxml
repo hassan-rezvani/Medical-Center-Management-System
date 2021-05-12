@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="483.0" prefWidth="716.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.DoctorProfileController">
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" stylesheets="@application.css" BorderPane.alignment="CENTER">
+         <children>
+            <TextField fx:id="doctorIDField" disable="true" editable="false" layoutX="107.0" layoutY="78.0" prefHeight="25.0" prefWidth="158.0" />
+            <TextField fx:id="doctorUsernameField" disable="true" editable="false" layoutX="107.0" layoutY="120.0" prefHeight="25.0" prefWidth="158.0" />
+            <TextField fx:id="doctorPasswordField" disable="true" editable="false" layoutX="107.0" layoutY="163.0" prefHeight="25.0" prefWidth="158.0" text="**********" />
+            <TextField fx:id="doctorFirstNameField" disable="true" layoutX="107.0" layoutY="210.0" prefHeight="25.0" prefWidth="158.0" />
+            <TextField fx:id="doctorLastNameField" disable="true" layoutX="108.0" layoutY="250.0" prefHeight="25.0" prefWidth="156.0" />
+            <TextField fx:id="doctorDayOfBirthField" disable="true" layoutX="108.0" layoutY="292.0" prefHeight="25.0" prefWidth="39.0" />
+            <TextField fx:id="doctorMonthOfBirthField" disable="true" layoutX="152.0" layoutY="292.0" prefHeight="25.0" prefWidth="42.0" />
+            <TextField fx:id="doctorYearOfBirthField" disable="true" layoutX="204.0" layoutY="292.0" prefHeight="25.0" prefWidth="60.0" />
+            <TextField fx:id="doctorAddressField" disable="true" layoutX="362.0" layoutY="78.0" prefHeight="67.0" prefWidth="270.0" />
+            <TextField fx:id="doctorPhoneNumberField" disable="true" layoutX="398.0" layoutY="160.0" />
+            <ChoiceBox fx:id="doctorDepartmentBox" disable="true" layoutX="357.0" layoutY="202.0" prefWidth="150.0" />
+            <ChoiceBox fx:id="doctorGenderBox" disable="true" layoutX="357.0" layoutY="238.0" prefWidth="150.0" />
+            <CheckBox fx:id="updateToggle" layoutX="204.0" layoutY="423.0" mnemonicParsing="false" onAction="#updateToggleAction" text="Update on/off" />
+            <Button fx:id="updateButton" disable="true" layoutX="372.0" layoutY="419.0" mnemonicParsing="false" onAction="#updateButtonAction" text="UPDATE" />
+            <ImageView fx:id="doctorProfileBackIcon" fitHeight="49.0" fitWidth="57.0" layoutX="14.0" layoutY="14.0" onMouseClicked="#doctorProfileBackIconClicked" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../resource/red_back_icon.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="32.0" layoutY="76.0" prefHeight="29.0" prefWidth="74.0" text="Doctor ID :" />
+            <Label layoutX="29.0" layoutY="123.0" text="Username :" />
+            <Label layoutX="29.0" layoutY="167.0" text="Password :" />
+            <Label layoutX="28.0" layoutY="214.0" text="First Name :" />
+            <Label layoutX="28.0" layoutY="254.0" text="Last Name :" />
+            <Label layoutX="29.0" layoutY="296.0" prefHeight="17.0" prefWidth="76.0" text="Date of Birth :" />
+            <Label layoutX="301.0" layoutY="82.0" text="Address :" />
+            <Label layoutX="301.0" layoutY="164.0" text="Phone Number :" />
+            <Label layoutX="301.0" layoutY="242.0" text="Gender :" />
+            <Label layoutX="301.0" layoutY="206.0" text="Depart. :" />
+         </children></AnchorPane>
+   </center>
+</BorderPane>
