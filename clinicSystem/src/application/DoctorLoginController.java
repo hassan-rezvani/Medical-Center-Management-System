@@ -13,6 +13,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import user.DoctorUser;
 import util.DBUtil;
@@ -26,12 +27,14 @@ public class DoctorLoginController {
 	private Button doctorLoginButton;
 	@FXML
 	private Label doctorLoginMessage;
-	
-	 // DoctorUser Singleton Object
-		DoctorUser sysDoctor;
-	
-public void doctorLoginButtonOnAction(ActionEvent event) {
-		
+	@FXML
+	private ImageView doctorLoginBackIcon;
+
+	// DoctorUser Singleton Object
+	DoctorUser sysDoctor;
+
+	public void doctorLoginButtonOnAction(ActionEvent event) {
+
 		// Connecting to the Database
 		DBUtil db = new DBUtil();
 		Connection conn = db.connect();
@@ -68,17 +71,46 @@ public void doctorLoginButtonOnAction(ActionEvent event) {
 		try {
 			if (answers.next()) {
 				exist = true;
-				
-				//Initialize the sysDoctor
+
+				// Initialize the sysDoctor
 				DoctorUser sysDoctor = DoctorUser.getInstance();
 				sysDoctor.setId(answers.getString(1));
 				sysDoctor.setFirstName(answers.getString(2));
 				sysDoctor.setLastName(answers.getString(3));
-				sysDoctor.setDateOfBirth(answers.getString(4));
-				sysDoctor.setAddress(answers.getString(5));
-				sysDoctor.setPhoneNumber(answers.getString(6));
-				sysDoctor.setGender(answers.getString(7));
-				sysDoctor.setDepartment(answers.getString(8));
+				if (answers.getString(4) == null) {
+					sysDoctor.setDateOfBirth("");
+				}
+				else {
+					sysDoctor.setDateOfBirth(answers.getString(4));
+				}
+				
+				if (answers.getString(5) == null) {
+					sysDoctor.setAddress("");
+				}
+				else {
+					sysDoctor.setAddress(answers.getString(5));
+				}
+				
+				if (answers.getString(6) == null) {
+					sysDoctor.setPhoneNumber("");
+				}
+				else {
+					sysDoctor.setPhoneNumber(answers.getString(6));
+				}
+				
+				if (answers.getString(7) == null) {
+					sysDoctor.setGender("");
+				}
+				else {
+					sysDoctor.setGender(answers.getString(7));
+				}
+				
+				if (answers.getString(8) == null) {
+					sysDoctor.setDepartment("");
+				}
+				else {
+					sysDoctor.setDepartment(answers.getString(8));
+				}
 				sysDoctor.setUserName(answers.getString(9));
 				sysDoctor.setPassword(answers.getString(10));
 			} else {
@@ -110,9 +142,8 @@ public void doctorLoginButtonOnAction(ActionEvent event) {
 					FXMLLoader loader = new FXMLLoader();
 					loader.setLocation(getClass().getResource("DoctorPortalUI.fxml"));
 					Parent root = loader.load();
-					
-					Scene doctorLoginScene = new Scene(root);
 
+					Scene doctorLoginScene = new Scene(root);
 
 					doctorLoginStage.setScene(doctorLoginScene);
 				} else {
@@ -125,5 +156,17 @@ public void doctorLoginButtonOnAction(ActionEvent event) {
 			e.printStackTrace();
 		}
 
+	}
+	
+	public void doctorLoginBackIconMouseClicked() {
+		Stage doctorLoginStage = (Stage) doctorLoginBackIcon.getScene().getWindow();
+
+		try {
+			Parent root = FXMLLoader.load(getClass().getResource("SoftwarePortalUI.fxml"));
+			Scene scene = new Scene(root);
+			doctorLoginStage.setScene(scene);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

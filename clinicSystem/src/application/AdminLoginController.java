@@ -10,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import user.AdminUser;
 import util.DBUtil;
@@ -24,6 +25,8 @@ public class AdminLoginController {
 	private Button adminLoginButton;
 	@FXML
 	private Label adminLoginMessage;
+	@FXML
+	private ImageView adminLoginBackIcon;
 	
 	// AdminUser Singleton Object
 	AdminUser sysAdmin;
@@ -103,9 +106,6 @@ public class AdminLoginController {
 					Parent root = loader.load();
 					
 					Scene adminLoginScene = new Scene(root);
-					
-//					AdminPortalController controller = loader.getController();
-//					controller.initialUserData(sysAdmin);
 
 					adminLoginStage.setScene(adminLoginScene);
 				} else {
@@ -117,6 +117,17 @@ public class AdminLoginController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void adminLoginBackIconMouseClicked() {
+		Stage adminLoginStage = (Stage) adminLoginBackIcon.getScene().getWindow();
 
+		try {
+			Parent root = FXMLLoader.load(getClass().getResource("SoftwarePortalUI.fxml"));
+			Scene scene = new Scene(root);
+			adminLoginStage.setScene(scene);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

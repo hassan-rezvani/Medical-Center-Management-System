@@ -1,10 +1,6 @@
 package application;
 
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
@@ -22,8 +18,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import user.DoctorInfo;
-import user.DoctorUser;
-import util.DBUtil;
 
 public class AdminDoctorUpdateController implements Initializable {
 
@@ -107,7 +101,7 @@ public class AdminDoctorUpdateController implements Initializable {
     
     TextFieldProperty tfProperty = new TextFieldProperty();
     
-    // DoctorUser Singleton Object
+    // DoctorInfo Singleton Object
     DoctorInfo doctorInfo;
     
 

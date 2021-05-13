@@ -13,6 +13,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import user.SecretaryUser;
 import util.DBUtil;
@@ -26,12 +27,14 @@ public class SecretaryLoginController {
 	private Button secretaryLoginButton;
 	@FXML
 	private Label secretaryLoginMessage;
-	
+	@FXML
+	private ImageView secretaryLoginBackIcon;
+
 	// SecretaryUser Singleton Object
-		SecretaryUser sysSecretary;
-	
-public void secretaryLoginButtonOnAction(ActionEvent event) {
-		
+	SecretaryUser sysSecretary;
+
+	public void secretaryLoginButtonOnAction(ActionEvent event) {
+
 		// Connecting to the Database
 		DBUtil db = new DBUtil();
 		Connection conn = db.connect();
@@ -68,8 +71,8 @@ public void secretaryLoginButtonOnAction(ActionEvent event) {
 		try {
 			if (answers.next()) {
 				exist = true;
-				
-				//Initialize the sysSecretary
+
+				// Initialize the sysSecretary
 				SecretaryUser sysSecretary = SecretaryUser.getInstance();
 				sysSecretary.setId(answers.getString(1));
 				sysSecretary.setFirstName(answers.getString(2));
@@ -109,9 +112,8 @@ public void secretaryLoginButtonOnAction(ActionEvent event) {
 					FXMLLoader loader = new FXMLLoader();
 					loader.setLocation(getClass().getResource("SecretaryPortalUI.fxml"));
 					Parent root = loader.load();
-					
-					Scene secretaryLoginScene = new Scene(root);
 
+					Scene secretaryLoginScene = new Scene(root);
 
 					secretaryLoginStage.setScene(secretaryLoginScene);
 				} else {
@@ -124,5 +126,17 @@ public void secretaryLoginButtonOnAction(ActionEvent event) {
 			e.printStackTrace();
 		}
 
+	}
+
+	public void secretaryLoginBackIconMouseClicked() {
+		Stage secretaryLoginStage = (Stage) secretaryLoginBackIcon.getScene().getWindow();
+
+		try {
+			Parent root = FXMLLoader.load(getClass().getResource("SoftwarePortalUI.fxml"));
+			Scene scene = new Scene(root);
+			secretaryLoginStage.setScene(scene);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

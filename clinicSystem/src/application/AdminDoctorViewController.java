@@ -48,7 +48,7 @@ public class AdminDoctorViewController implements Initializable{
     
     ObservableList<DoctorInfo> doctorsList;
     
-    //Doctor Singelton Object
+    //Doctor Singleton Object
     DoctorInfo doctorInfo;
 	
 

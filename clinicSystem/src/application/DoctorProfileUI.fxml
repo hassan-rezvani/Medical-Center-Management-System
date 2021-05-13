@@ -4,45 +4,54 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="483.0" prefWidth="716.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.DoctorProfileController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="637.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.DoctorProfileController">
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" stylesheets="@application.css" BorderPane.alignment="CENTER">
          <children>
-            <TextField fx:id="doctorIDField" disable="true" editable="false" layoutX="107.0" layoutY="78.0" prefHeight="25.0" prefWidth="158.0" />
-            <TextField fx:id="doctorUsernameField" disable="true" editable="false" layoutX="107.0" layoutY="120.0" prefHeight="25.0" prefWidth="158.0" />
-            <TextField fx:id="doctorPasswordField" disable="true" editable="false" layoutX="107.0" layoutY="163.0" prefHeight="25.0" prefWidth="158.0" text="**********" />
-            <TextField fx:id="doctorFirstNameField" disable="true" layoutX="107.0" layoutY="210.0" prefHeight="25.0" prefWidth="158.0" />
-            <TextField fx:id="doctorLastNameField" disable="true" layoutX="108.0" layoutY="250.0" prefHeight="25.0" prefWidth="156.0" />
-            <TextField fx:id="doctorDayOfBirthField" disable="true" layoutX="108.0" layoutY="292.0" prefHeight="25.0" prefWidth="39.0" />
-            <TextField fx:id="doctorMonthOfBirthField" disable="true" layoutX="152.0" layoutY="292.0" prefHeight="25.0" prefWidth="42.0" />
-            <TextField fx:id="doctorYearOfBirthField" disable="true" layoutX="204.0" layoutY="292.0" prefHeight="25.0" prefWidth="60.0" />
-            <TextField fx:id="doctorAddressField" disable="true" layoutX="362.0" layoutY="78.0" prefHeight="67.0" prefWidth="270.0" />
-            <TextField fx:id="doctorPhoneNumberField" disable="true" layoutX="398.0" layoutY="160.0" />
-            <ChoiceBox fx:id="doctorDepartmentBox" disable="true" layoutX="357.0" layoutY="202.0" prefWidth="150.0" />
-            <ChoiceBox fx:id="doctorGenderBox" disable="true" layoutX="357.0" layoutY="238.0" prefWidth="150.0" />
-            <CheckBox fx:id="updateToggle" layoutX="204.0" layoutY="423.0" mnemonicParsing="false" onAction="#updateToggleAction" text="Update on/off" />
-            <Button fx:id="updateButton" disable="true" layoutX="372.0" layoutY="419.0" mnemonicParsing="false" onAction="#updateButtonAction" text="UPDATE" />
+            <TextField fx:id="doctorIDField" disable="true" editable="false" layoutX="183.0" layoutY="87.0" prefHeight="25.0" prefWidth="146.0" promptText="ID" />
+            <TextField fx:id="doctorUsernameField" disable="true" editable="false" layoutX="183.0" layoutY="260.0" prefHeight="25.0" prefWidth="146.0" promptText="User Name" />
+            <TextField fx:id="doctorPasswordField" disable="true" editable="false" layoutX="408.0" layoutY="260.0" prefHeight="25.0" prefWidth="146.0" text="**********" />
+            <TextField fx:id="doctorFirstNameField" disable="true" layoutX="183.0" layoutY="142.0" prefHeight="25.0" prefWidth="146.0" promptText="First Name" />
+            <TextField fx:id="doctorLastNameField" disable="true" layoutX="409.0" layoutY="142.0" prefHeight="25.0" prefWidth="146.0" promptText="Last Name" />
+            <TextField fx:id="doctorDayOfBirthField" disable="true" layoutX="183.0" layoutY="199.0" prefHeight="25.0" prefWidth="44.0" promptText="DD" />
+            <TextField fx:id="doctorMonthOfBirthField" disable="true" layoutX="229.0" layoutY="199.0" prefHeight="25.0" prefWidth="44.0" promptText="MM" />
+            <TextField fx:id="doctorYearOfBirthField" disable="true" layoutX="275.0" layoutY="199.0" prefHeight="25.0" prefWidth="54.0" promptText="YYYY" />
+            <ChoiceBox fx:id="doctorDepartmentBox" disable="true" layoutX="460.0" layoutY="87.0" prefHeight="25.0" prefWidth="91.0" />
+            <TextArea fx:id="doctorAddressTextArea" disable="true" layoutX="183.0" layoutY="336.0" prefHeight="54.0" prefWidth="374.0" />
+            <ChoiceBox fx:id="doctorGenderBox" disable="true" layoutX="460.0" layoutY="199.0" prefHeight="25.0" prefWidth="94.0" />
+            <TextField fx:id="doctorPhoneNumberField" disable="true" layoutX="183.0" layoutY="426.0" prefHeight="25.0" prefWidth="193.0" />
+            <CheckBox fx:id="updateToggle" layoutX="189.0" layoutY="525.0" mnemonicParsing="false" onAction="#updateToggleAction" text="Update on/off" />
+            <Button fx:id="updateButton" disable="true" layoutX="328.0" layoutY="521.0" mnemonicParsing="false" onAction="#updateButtonAction" text="UPDATE" />
             <ImageView fx:id="doctorProfileBackIcon" fitHeight="49.0" fitWidth="57.0" layoutX="14.0" layoutY="14.0" onMouseClicked="#doctorProfileBackIconClicked" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../resource/red_back_icon.png" />
                </image>
             </ImageView>
-            <Label layoutX="32.0" layoutY="76.0" prefHeight="29.0" prefWidth="74.0" text="Doctor ID :" />
-            <Label layoutX="29.0" layoutY="123.0" text="Username :" />
-            <Label layoutX="29.0" layoutY="167.0" text="Password :" />
-            <Label layoutX="28.0" layoutY="214.0" text="First Name :" />
-            <Label layoutX="28.0" layoutY="254.0" text="Last Name :" />
-            <Label layoutX="29.0" layoutY="296.0" prefHeight="17.0" prefWidth="76.0" text="Date of Birth :" />
-            <Label layoutX="301.0" layoutY="82.0" text="Address :" />
-            <Label layoutX="301.0" layoutY="164.0" text="Phone Number :" />
-            <Label layoutX="301.0" layoutY="242.0" text="Gender :" />
-            <Label layoutX="301.0" layoutY="206.0" text="Depart. :" />
+            <Label layoutX="66.0" layoutY="85.0" prefHeight="29.0" prefWidth="74.0" text="Doctor ID :" />
+            <Label layoutX="64.0" layoutY="264.0" text="Credentials :" />
+            <Label layoutX="65.0" layoutY="146.0" text="Name :" />
+            <Label layoutX="65.0" layoutY="206.0" prefHeight="17.0" prefWidth="76.0" text="Date of Birth :" />
+            <Label layoutX="66.0" layoutY="336.0" text="Address :" />
+            <Label layoutX="66.0" layoutY="430.0" text="Phone Number :" />
+            <Label layoutX="409.0" layoutY="199.0" text="Gender :" />
+            <Label layoutX="410.0" layoutY="91.0" text="Depart." />
+            <Label fx:id="idMessageLabel" layoutX="181.0" layoutY="112.0" prefHeight="17.0" prefWidth="143.0" text="Label" />
+            <Label fx:id="departMessageLabel" layoutX="412.0" layoutY="112.0" prefHeight="17.0" prefWidth="146.0" text="Label" />
+            <Label fx:id="passwordMessageLabel" layoutX="408.0" layoutY="285.0" prefHeight="17.0" prefWidth="146.0" text="Label" />
+            <Label fx:id="fNameMessageLabel" layoutX="184.0" layoutY="167.0" prefHeight="17.0" prefWidth="141.0" text="Label" />
+            <Label fx:id="lNameMessageLabel" layoutX="398.0" layoutY="167.0" prefHeight="17.0" prefWidth="157.0" text="Label" />
+            <Label fx:id="dateMessageLabel" layoutX="183.0" layoutY="224.0" prefHeight="17.0" prefWidth="220.0" text="Label" />
+            <Label fx:id="userNameMessageLabel" layoutX="184.0" layoutY="285.0" prefHeight="17.0" prefWidth="139.0" text="Label" />
+            <Label fx:id="addressMessageLabel" layoutX="184.0" layoutY="390.0" prefHeight="17.0" prefWidth="303.0" text="Label" />
+            <Label fx:id="genderMessageLabel" layoutX="411.0" layoutY="224.0" prefHeight="17.0" prefWidth="143.0" text="Label" />
+            <Label fx:id="phoneNumberMessageLabel" layoutX="184.0" layoutY="451.0" prefHeight="17.0" prefWidth="242.0" text="Label" />
          </children></AnchorPane>
    </center>
 </BorderPane>
