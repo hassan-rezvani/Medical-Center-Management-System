@@ -145,11 +145,98 @@ public class AdminDoctorViewController implements Initializable{
 
 		try {
 			doctorInfo = DoctorInfo.getInstance();
-			if (doctorsTable.getSelectionModel().getSelectedItem() == null) {
-				
+			
+			if (doctorsTable.getSelectionModel().getSelectedItem() == null) {	
 				return;
 			}
-			doctorInfo.setDoctorID(doctorsTable.getSelectionModel().getSelectedItem().getDoctorID());
+			
+			// Connecting to the Database
+			DBUtil db = new DBUtil();
+			Connection conn = db.connect();
+			
+			// SQL query
+			String queryText = ""; // The SQL text.
+			PreparedStatement querySt = null; // The query handle.
+			ResultSet answers = null; // A cursor.
+			
+			queryText = "SELECT * " + "FROM doctor " + "WHERE doctor_id = ?";
+			
+			// Prepare the query.
+			try {
+				querySt = conn.prepareStatement(queryText);
+			} catch (SQLException e) {
+				System.out.println("SQL failed in prepare");
+				System.out.println(e.toString());
+				System.exit(0);
+			}
+			
+			// Execute the query
+			try {
+				querySt.setString(1, doctorsTable.getSelectionModel().getSelectedItem().getDoctorID());
+				answers = querySt.executeQuery();
+			} catch (SQLException e) {
+				System.out.println("SQL failed in execute");
+				System.out.println(e.toString());
+				System.exit(0);
+			}
+			
+			// Any answer?
+			try {
+				doctorInfo.setDoctorID(answers.getString(1));
+				doctorInfo.setFirstName(answers.getString(2));
+				doctorInfo.setLastName(answers.getString(3));
+				
+				if (answers.getString(4) == null) {
+					doctorInfo.setDateOfBirth("");
+				}
+				else {
+					doctorInfo.setDateOfBirth(answers.getString(4));
+				}
+				
+				if (answers.getString(5) == null) {
+					doctorInfo.setAddress("");
+				}
+				else {
+					doctorInfo.setAddress(answers.getString(5));
+				}
+				
+				if (answers.getString(6) == null) {
+					doctorInfo.setPhoneNumber("");
+				}
+				else {
+					doctorInfo.setPhoneNumber(answers.getString(6));
+				}
+				
+				if (answers.getString(7) == null) {
+					doctorInfo.setGender("");
+				}
+				else {
+					doctorInfo.setGender(answers.getString(7));
+				}
+				
+				if (answers.getString(8) == null) {
+					doctorInfo.setDepartment("");
+				}
+				else {
+					doctorInfo.setDepartment(answers.getString(8));
+				}
+				
+				doctorInfo.setUserName(answers.getString(9));
+				doctorInfo.setPassword(answers.getString(10));
+			} catch (SQLException e) {
+				System.out.println("SQL failed in cursor.");
+				System.out.println(e.toString());
+				System.exit(0);
+			}
+			
+			// We're done with the handle.
+			try {
+				querySt.close();
+			} catch (SQLException e) {
+				System.out.print("SQL failed closing the handle.\n");
+				System.out.println(e.toString());
+				System.exit(0);
+			}
 			
 			Parent root = FXMLLoader.load(getClass().getResource("AdminDoctorUpdateUI.fxml"));			
 			Scene scene = new Scene(root);

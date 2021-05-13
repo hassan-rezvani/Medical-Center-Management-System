@@ -166,5 +166,4 @@ public class DoctorUser implements User {
 			System.exit(0);
 		}
 	}
-
 }

@@ -107,10 +107,9 @@ public class AdminDoctorUpdateController implements Initializable {
     
     TextFieldProperty tfProperty = new TextFieldProperty();
     
+    // DoctorUser Singleton Object
     DoctorInfo doctorInfo;
     
-	// DoctorUser Singleton Object
-	DoctorUser sysDoctor;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -147,114 +146,53 @@ public class AdminDoctorUpdateController implements Initializable {
 		
 		// TODO Auto-generated method stub
 		doctorInfo = DoctorInfo.getInstance();
-		sysDoctor = DoctorUser.getInstance();
 		
-		// Connecting to the Database
-		DBUtil db = new DBUtil();
-		Connection conn = db.connect();
-		
-		// SQL query
-		String queryText = ""; // The SQL text.
-		PreparedStatement querySt = null; // The query handle.
-		ResultSet answers = null; // A cursor.
-		
-		queryText = "SELECT * " + "FROM doctor " + "WHERE doctor_id = ?";
-		
-		// Prepare the query.
-		try {
-			querySt = conn.prepareStatement(queryText);
-		} catch (SQLException e) {
-			System.out.println("SQL failed in prepare");
-			System.out.println(e.toString());
-			System.exit(0);
-		}
-		
-		// Execute the query
-		try {
-			querySt.setString(1, doctorInfo.getDoctorID());
-			answers = querySt.executeQuery();
-		} catch (SQLException e) {
-			System.out.println("SQL failed in execute");
-			System.out.println(e.toString());
-			System.exit(0);
-		}
-		
-		// Any answer?
-		try {
-			
-			doctorIDField.setText(answers.getString(1));
-			sysDoctor.setId(doctorIDField.getText());
-			
-			firstNameField.setText(answers.getString(2));
-			sysDoctor.setFirstName(firstNameField.getText());
-			
-			lastNameField.setText(answers.getString(3));
-			sysDoctor.setLastName(lastNameField.getText());
-			
-			String[] dateOfBirth = answers.getString(4).split("/");
+
+		doctorIDField.setText(doctorInfo.getDoctorID());
+		firstNameField.setText(doctorInfo.getFirstName());
+		lastNameField.setText(doctorInfo.getLastName());
+		if (doctorInfo.getDateOfBirth() != null && !doctorInfo.getDateOfBirth().isEmpty()) {
+			String[] dateOfBirth = doctorInfo.getDateOfBirth().split("/");
 			dayField.setText(dateOfBirth[0]);
 			monthField.setText(dateOfBirth[1]);
 			yearField.setText(dateOfBirth[2]);
-			sysDoctor.setDateOfBirth(dayField.getText() + "/" + monthField.getText() + "/" + yearField.getText());
-			
-			addressTextArea.setText(answers.getString(5));
-			sysDoctor.setAddress(addressTextArea.getText());
-			
-			phoneNumberField.setText(answers.getString(6));
-			sysDoctor.setPhoneNumber(phoneNumberField.getText());
-			
-			genderChoiceBox.setValue(answers.getString(7));
-			sysDoctor.setGender(genderChoiceBox.getValue());
-			
-			departmentChoiceBox.setValue(answers.getString(8));
-			sysDoctor.setDepartment(departmentChoiceBox.getValue());
-			
-			userNameField.setText(answers.getString(9));
-			sysDoctor.setUserName(userNameField.getText());
-			
-			passwordField.setText("**********");
-			sysDoctor.setPassword(answers.getString(10));
-		} catch (SQLException e) {
-			System.out.println("SQL failed in cursor.");
-			System.out.println(e.toString());
-			System.exit(0);
 		}
-		
-		// We're done with the handle.
-		try {
-			querySt.close();
-		} catch (SQLException e) {
-			System.out.print("SQL failed closing the handle.\n");
-			System.out.println(e.toString());
-			System.exit(0);
-		}
+		addressTextArea.setText(doctorInfo.getAddress());
+		phoneNumberField.setText(doctorInfo.getPhoneNumber());
+		genderChoiceBox.setValue(doctorInfo.getGender());
+		departmentChoiceBox.setValue(doctorInfo.getDepartment());
+		userNameField.setText(doctorInfo.getUserName());
+		passwordField.setText("**********");
 	}
     
 	public void updateButtonAction () {
-		DoctorUser sysDoctor = DoctorUser.getInstance();
+		doctorInfo = DoctorInfo.getInstance();
+		/* Add Error Checking */
+		//Use ternary to set empty string to null value
+		
 		String dateOfBirth = dayField.getText() + "/" + monthField.getText() + "/" + yearField.getText();
-		sysDoctor.setId(doctorIDField.getText());
-		sysDoctor.updateDoctor(firstNameField.getText(), lastNameField.getText(), dateOfBirth, addressTextArea.getText(), phoneNumberField.getText(), genderChoiceBox.getValue(), departmentChoiceBox.getValue());
+		doctorInfo.updateDoctor(firstNameField.getText(), lastNameField.getText(), dateOfBirth, addressTextArea.getText(), phoneNumberField.getText(),genderChoiceBox.getValue(), departmentChoiceBox.getValue(), userNameField.getText(), passwordField.getText());
 	}
 
+	
 	public void updateToggleAction () {
-		DoctorUser sysDoctor = DoctorUser.getInstance();
+		doctorInfo = DoctorInfo.getInstance();
 		if (updateToggle.isSelected()) {
-			passwordField.setText(sysDoctor.getPassword());
-			userNameField.setText(sysDoctor.getUserName());
-			firstNameField.setText(sysDoctor.getFirstName());
-			lastNameField.setText(sysDoctor.getLastName());
-			if (sysDoctor.getDateOfBirth() != null) {
-				if (!sysDoctor.getDateOfBirth().isEmpty()) {
-					dayField.setText(sysDoctor.getDateOfBirth().substring(0, 2));
-					monthField.setText(sysDoctor.getDateOfBirth().substring(3, 5));
-					yearField.setText(sysDoctor.getDateOfBirth().substring(6, 10));
+			passwordField.setText(doctorInfo.getPassword());
+			userNameField.setText(doctorInfo.getUserName());
+			firstNameField.setText(doctorInfo.getFirstName());
+			lastNameField.setText(doctorInfo.getLastName());
+			if (doctorInfo.getDateOfBirth() != null) {
+				if (!doctorInfo.getDateOfBirth().isEmpty()) {
+					dayField.setText(doctorInfo.getDateOfBirth().substring(0, 2));
+					monthField.setText(doctorInfo.getDateOfBirth().substring(3, 5));
+					yearField.setText(doctorInfo.getDateOfBirth().substring(6, 10));
 				}
 			}
-			addressTextArea.setText(sysDoctor.getAddress());
-			phoneNumberField.setText(sysDoctor.getPhoneNumber());
-			genderChoiceBox.setValue(sysDoctor.getGender());
-			departmentChoiceBox.setValue(sysDoctor.getDepartment());
+			addressTextArea.setText(doctorInfo.getAddress());
+			phoneNumberField.setText(doctorInfo.getPhoneNumber());
+			genderChoiceBox.setValue(doctorInfo.getGender());
+			departmentChoiceBox.setValue(doctorInfo.getDepartment());
 			
 			firstNameField.setDisable(false);
 			firstNameField.setEditable(true);
@@ -318,19 +256,19 @@ public class AdminDoctorUpdateController implements Initializable {
 			departmentChoiceBox.setDisable(true);
 			updateButton.setDisable(true);
 			
-			firstNameField.setText(sysDoctor.getFirstName());
-			lastNameField.setText(sysDoctor.getLastName());
-			if (sysDoctor.getDateOfBirth() != null) {
-				if (!sysDoctor.getDateOfBirth().isEmpty()) {
-					dayField.setText(sysDoctor.getDateOfBirth().substring(0, 2));
-					monthField.setText(sysDoctor.getDateOfBirth().substring(3, 5));
-					yearField.setText(sysDoctor.getDateOfBirth().substring(6, 10));
+			firstNameField.setText(doctorInfo.getFirstName());
+			lastNameField.setText(doctorInfo.getLastName());
+			if (doctorInfo.getDateOfBirth() != null) {
+				if (!doctorInfo.getDateOfBirth().isEmpty()) {
+					dayField.setText(doctorInfo.getDateOfBirth().substring(0, 2));
+					monthField.setText(doctorInfo.getDateOfBirth().substring(3, 5));
+					yearField.setText(doctorInfo.getDateOfBirth().substring(6, 10));
 				}
 			}
-			addressTextArea.setText(sysDoctor.getAddress());
-			phoneNumberField.setText(sysDoctor.getPhoneNumber());
-			genderChoiceBox.setValue(sysDoctor.getGender());
-			departmentChoiceBox.setValue(sysDoctor.getDepartment());
+			addressTextArea.setText(doctorInfo.getAddress());
+			phoneNumberField.setText(doctorInfo.getPhoneNumber());
+			genderChoiceBox.setValue(doctorInfo.getGender());
+			departmentChoiceBox.setValue(doctorInfo.getDepartment());
 			passwordField.setText("**********");
 		}
 	}

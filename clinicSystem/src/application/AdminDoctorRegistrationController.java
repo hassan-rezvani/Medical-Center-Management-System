@@ -100,7 +100,7 @@ public class AdminDoctorRegistrationController implements Initializable {
 		departmentChoiceBox.getItems().addAll("A", "B", "C");
 		genderChoiceBox.getItems().addAll("Female", "Male", "Other", "Not Defined");
 
-		tfProperty.setMaxLimit(doctorIDField, 6);
+		tfProperty.setMaxLimit(doctorIDField, 5);
 		tfProperty.setMaxLimit(dayField, 2);
 		tfProperty.setMaxLimit(monthField, 2);
 		tfProperty.setMaxLimit(yearField, 4);
