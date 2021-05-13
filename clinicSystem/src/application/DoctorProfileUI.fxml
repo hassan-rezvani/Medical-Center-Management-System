@@ -52,6 +52,7 @@
             <Label fx:id="addressMessageLabel" layoutX="184.0" layoutY="390.0" prefHeight="17.0" prefWidth="303.0" text="Label" />
             <Label fx:id="genderMessageLabel" layoutX="411.0" layoutY="224.0" prefHeight="17.0" prefWidth="143.0" text="Label" />
             <Label fx:id="phoneNumberMessageLabel" layoutX="184.0" layoutY="451.0" prefHeight="17.0" prefWidth="242.0" text="Label" />
+            <Label layoutX="265.0" layoutY="55.0" text="Doctor Profile" />
          </children></AnchorPane>
    </center>
 </BorderPane>

@@ -85,26 +85,26 @@ public class DoctorProfileController implements Initializable {
 
 	@FXML
 	private Label phoneNumberMessageLabel;
-	
+
 	@FXML
 	private ChoiceBox<String> doctorGenderBox = new ChoiceBox<String>();
-	
+
 	@FXML
 	private ChoiceBox<String> doctorDepartmentBox = new ChoiceBox<String>();
-	
+
 	@FXML
 	private Button updateButton;
-	
+
 	TextFieldProperty tfProperty = new TextFieldProperty();
-	
+
 	// DoctorUser Singleton Object
 	DoctorUser sysDoctor;
 
 	@Override
 	public void initialize(URL ursl, ResourceBundle rb) {
 		// TO-DO (Welcome Message, Show Date, etc ...)
-		doctorDepartmentBox.getItems().addAll("A", "B", "C");
-		doctorGenderBox.getItems().addAll("Female", "Male", "Other", "Not Defined");
+		doctorDepartmentBox.getItems().addAll("---","A", "B", "C");
+		doctorGenderBox.getItems().addAll("---", "Female", "Male", "Other", "Not Defined");
 
 		tfProperty.setMaxLimit(doctorIDField, 5);
 		tfProperty.setMaxLimit(doctorDayOfBirthField, 2);
@@ -122,8 +122,8 @@ public class DoctorProfileController implements Initializable {
 		passwordMessageLabel.setText("");
 		addressMessageLabel.setText("");
 		phoneNumberMessageLabel.setText("");
-		
-		 // Set the color of Message Label to red
+
+		// Set the color of Message Label to red
 		idMessageLabel.setTextFill(Color.web("#ff0000", 0.8));
 		departMessageLabel.setTextFill(Color.web("#ff0000", 0.8));
 		fNameMessageLabel.setTextFill(Color.web("#ff0000", 0.8));
@@ -152,8 +152,6 @@ public class DoctorProfileController implements Initializable {
 		doctorPhoneNumberField.setText(sysDoctor.getPhoneNumber());
 		doctorGenderBox.setValue(sysDoctor.getGender());
 		doctorDepartmentBox.setValue(sysDoctor.getDepartment());
-		doctorGenderBox.getItems().addAll("Female", "Male", "Other", "Not Defined");
-		doctorDepartmentBox.getItems().addAll("A", "B", "C");
 	}
 
 	public void doctorProfileBackIconClicked() {
@@ -169,12 +167,58 @@ public class DoctorProfileController implements Initializable {
 	}
 
 	public void updateButtonAction() {
-		DoctorUser sysDoctor = DoctorUser.getInstance();
-		String Adress = doctorDayOfBirthField.getText() + "/" + doctorMonthOfBirthField.getText() + "/"
-				+ doctorYearOfBirthField.getText();
-		sysDoctor.updateDoctor(doctorFirstNameField.getText(), doctorLastNameField.getText(), Adress,
-				doctorAddressTextArea.getText(), doctorPhoneNumberField.getText(), doctorGenderBox.getValue(),
-				doctorDepartmentBox.getValue());
+		boolean cond = true;
+
+		if (doctorDepartmentBox.getValue() == null) {
+			departMessageLabel.setText("Select a Department");
+			cond &= false;
+		} else {
+			departMessageLabel.setText("");
+		}
+
+		if (!tfProperty.checkNameField(doctorFirstNameField, fNameMessageLabel)) {
+			cond &= false;
+		}
+
+		if (!tfProperty.checkNameField(doctorLastNameField, lNameMessageLabel)) {
+			cond &= false;
+		}
+
+		if (!tfProperty.checkDateField(doctorDayOfBirthField, doctorMonthOfBirthField, doctorYearOfBirthField,
+				dateMessageLabel)) {
+			cond &= false;
+		}
+
+		if (doctorGenderBox.getValue() == null) {
+			genderMessageLabel.setText("Select a Gender");
+			cond &= false;
+		} else {
+			genderMessageLabel.setText("");
+		}
+
+		if (!tfProperty.checkAddressTextArea(doctorAddressTextArea, addressMessageLabel)) {
+			cond &= false;
+		}
+
+		if (!tfProperty.checkPhoneNumberField(doctorPhoneNumberField, phoneNumberMessageLabel)) {
+			cond &= false;
+		}
+
+		if (cond) {
+			DoctorUser sysDoctor = DoctorUser.getInstance();
+			String datOfBirth = null;
+			if (!doctorDayOfBirthField.getText().isEmpty() && !doctorMonthOfBirthField.getText().isEmpty()
+					&& !doctorYearOfBirthField.getText().isEmpty()) {
+				datOfBirth = doctorDayOfBirthField.getText() + "/" + doctorMonthOfBirthField.getText() + "/"
+						+ doctorYearOfBirthField.getText();
+			}
+			sysDoctor.updateDoctor(doctorFirstNameField.getText(), doctorLastNameField.getText(),
+					datOfBirth.isEmpty() ? null : datOfBirth,
+					doctorAddressTextArea.getText().isEmpty() ? null : doctorAddressTextArea.getText(),
+					doctorPhoneNumberField.getText().isEmpty() ? null : doctorPhoneNumberField.getText(),
+					doctorGenderBox.getValue().isEmpty() || doctorGenderBox.getValue().equals("---") ? null : doctorGenderBox.getValue(),
+					doctorDepartmentBox.getValue().isEmpty() || doctorDepartmentBox.getValue().equals("---") ? null : doctorDepartmentBox.getValue());
+		}
 	}
 
 	public void updateToggleAction() {
